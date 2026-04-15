@@ -1,0 +1,30 @@
+{
+  "source_name": "eventhub_customer",
+  "entity_name": "customer",
+
+  "eventhub_name": "customer-cdc",
+  "bootstrap_servers": "evhns-stratus-dev.servicebus.windows.net:9093",
+
+  "connection_string": "<SET_IN_DATABRICKS_SECRET_OR_ENV>"
+
+  "bronze_path": "/Volumes/dbx_dev/stratus/eventhub_volume/bronze/customer/",
+  "silver_path": "/Volumes/dbx_dev/stratus/eventhub_volume/silver/customer/",
+  "gold_path": "/Volumes/dbx_dev/stratus/eventhub_volume/gold/customer/",
+  "dlq_path": "/Volumes/dbx_dev/stratus/eventhub_volume/dlq/customer/",
+  "checkpoint_path": "/Volumes/dbx_dev/stratus/eventhub_volume/checkpoints/customer/",
+
+  "supported_ops": ["I", "U", "D"],
+
+  "required_fields": ["event_id", "op", "entity", "customer_id"],
+
+  "schema": [
+    {"name": "event_id", "type": "string"},
+    {"name": "op", "type": "string"},
+    {"name": "entity", "type": "string"},
+    {"name": "customer_id", "type": "long"},
+    {"name": "customer_name", "type": "string"},
+    {"name": "email", "type": "string"},
+    {"name": "updated_at", "type": "string"},
+    {"name": "source_ts", "type": "string"}
+  ]
+}
